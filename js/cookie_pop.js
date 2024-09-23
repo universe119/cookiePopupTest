@@ -20,6 +20,8 @@ btnView.addEventListener("click", () => {
 });
 
 btnSet.addEventListener("click", () => {
+	//today=done이라는 이름으로 쿠키 생성함과 동시에 만료시간을 1분을 지정하여
+	//쿠키가 생성된 시점부터 1분까지만 유지되고 1분뒤에는 자동으로 쿠키 제거됨
 	setCookie("today", "done", 1);
 });
 
