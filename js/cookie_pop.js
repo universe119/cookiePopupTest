@@ -10,7 +10,6 @@ btnSet.addEventListener("click", () => {
 
 btnDel.addEventListener("click", () => {
 	setCookie("today", "done", 0);
-	alert("쿠키 삭제");
 });
 
 //쿠키 생성 함수
@@ -21,5 +20,6 @@ function setCookie(name, value, min) {
 	//쿠키값은 화면 새로고침되어야지만 갱신된값이 반영
 	now.setTime(duedate);
 	document.cookie = `${name}=${value}; path=/; expires=${now.toUTCString()}`;
-	alert("쿠키 생성");
+
+	min === 0 ? alert("쿠키 삭제") : alert("쿠키 생성");
 }
