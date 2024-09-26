@@ -65,7 +65,7 @@ function setCookie(name, value, day) {
 */
 
 /* 쿠키 생성 함수 최종 수정.
-const [btnView, btnSet] = document.querySelectorAll("button");
+const [btnView, btnSet, btnDel] = document.querySelectorAll("button");
 btnView.addEventListener("click", () => {
 	console.log(document.cookie);
 });
@@ -76,9 +76,8 @@ btnSet.addEventListener("click", () => {
 	setCookie("today", "done", 1);
 });
 
-btnSet.addEventListener("click", () => {
+btnDel.addEventListener("click", () => {
 	setCookie("today", "done", 0);
-	alert("쿠키 삭제");
 });
 
 // 쿠키 생성 함수
@@ -90,6 +89,7 @@ function setCookie(name, value, min) {
 	now.setTime(duedate);
 
 	document.cookie = `${name}=${value}; path=/; expires=${now.toUTCString()}`;
-	alert("쿠키 생성");
+	
+	min === 0 ? alert("쿠키삭제") : alert("쿠키생성");
 }
 */
