@@ -33,10 +33,12 @@ btnClose.addEventListener("click", () => {
 	// console.dir(ck);
 });
 //
+console.log(new Date().toUTCString());
 
 //쿠키 생성 함수
 function setCookie(name, value, day) {
 	let now = new Date();
+
 	let duedate = now.getTime() + day * 1000 * 60 * 60 * 24;
 
 	now.setTime(duedate);
@@ -77,19 +79,12 @@ btnSet.addEventListener("click", () => {
 // 쿠키 생성 함수
 function setCookie(name, value, min) {
 	let now = new Date();
+	//아래와 같이 getTime으로 현재 시간값을 가져와서 초단위로 값을 변경하면, 잘못된 날짜 정보로
+	let duedate = now.getTime() + sec * 1000;
+	//쿠키값은 화면 새로고침되어야지만 갱신된값이 반영
+	now.setTime(duedate);
 
-	//현재 분값을 가져와서 인수로 전달된 분 시간정보를 더함
-	let duedate = now.getMinutes() + min;
-
-	//바뀐 시간 정보값으로 시간객체정보를 변경
-	now.setMinutes(duedate);
-
-	//변경된 시간 정보값을 표준시로 변경해서 쿠키만료시간으로 설정
 	document.cookie = `${name}=${value}; path=/; expires=${now.toUTCString()}`;
 	alert("쿠키 생성");
 }
 */
-
-// 위와 같이 쿠키의 만료시간을 second, minutes, date로 지정하면
-// 쿠키가 생성되는 시점에 만료일이 설정되다보니 64초, 65분, 35일 같은 존재하지 않는 값으로 만료일이 잘못 세팅되는 이슈!
-// 해결 방법은 getTime()을 이용해서 : 표준시가 설정된 이후부터를 무조건 초 단위로만 반환된 값으로 설정
