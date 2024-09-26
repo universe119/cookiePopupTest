@@ -43,7 +43,7 @@ function setCookie(name, value, day) {
 	document.cookie = `${name}=${value}; path=/; expires=${now.toUTCString()}`;
 }
 
-/* 
+/* 쿠키 설명
   Cookie : 사용자 브라우저에 물리적인 형태로 특정 데이터를 저장하는 경량의 텍스트 자료 4kb
 
   사용자 브라우저에 특정 사용자 정보값을 저장해서 웹사이트에서 쿠키에 저장된 값을 기억해 활용하기 위함
@@ -62,25 +62,30 @@ function setCookie(name, value, day) {
   쿠키확인 : document.cookie
 */
 
-// 쿠키 생성 함수 (오류버전)
-// const [btnView, btnSet] = document.querySelectorAll("button");
-// btnView.addEventListener("click", () => {
-// 	console.log(document.cookie);
-// });
-// btnSet.addEventListener("click", () => {
-// 	setCookie("today", "done", 5);
-// });
+/* 쿠키 생성 함수 (코드 오류 수정)
+const [btnView, btnSet] = document.querySelectorAll("button");
+btnView.addEventListener("click", () => {
+	console.log(document.cookie);
+});
 
-// // 쿠키 생성 함수
-// function setCookie(name, value, sec) {
-// 	let now = new Date();
+btnSet.addEventListener("click", () => {
+	//today=done 이라는 이름으로 쿠키생성함과 동시에 만료시간을 1분을 지정하여
+	// 쿠키가 생성된 시점부터 1분까지만 유지되고 1분뒤에는 자동으로 쿠키 제거됨
+	setCookie("today", "done", 1);
+});
 
-// 	//현재 분값을 가져와서 인수로 전달된 분 시간정보를 더함
-// 	let duedate = now.getSeconds() + sec;
+// 쿠키 생성 함수
+function setCookie(name, value, min) {
+	let now = new Date();
 
-// 	//바뀐 시간 정보값으로 시간객체정보를 변경
-// 	now.setSeconds(duedate);
+	//현재 분값을 가져와서 인수로 전달된 분 시간정보를 더함
+	let duedate = now.getMinutes() + min;
 
-// 	//변경된 시간 정보값을 표준시로 변경해서 쿠키만료시간으로 설정
-// 	document.cookie = `${name}=${value}; path=/; expires=${now.toUTCString()}`;
-// }
+	//바뀐 시간 정보값으로 시간객체정보를 변경
+	now.setMinutes(duedate);
+
+	//변경된 시간 정보값을 표준시로 변경해서 쿠키만료시간으로 설정
+	document.cookie = `${name}=${value}; path=/; expires=${now.toUTCString()}`;
+	alert("쿠키 생성");
+}
+*/
